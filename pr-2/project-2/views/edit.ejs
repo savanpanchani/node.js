@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Book - Library Manager</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f4f4f9;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #289368;
+      padding: 20px 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    header nav a {
+      text-decoration: none;
+      color: #fff;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    header nav a:hover {
+      color: #ffca28;
+    }
+
+    header .btn-add {
+      background: #ffca28;
+      color: #289368;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    header .btn-add:hover {
+      background: #f9a825;
+    }
+
+    .form-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .form-box {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .form-box h1 {
+      margin-bottom: 25px;
+      text-align: center;
+      color: #289368;
+      font-size: 28px;
+    }
+
+    .form-box label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .form-box input,
+    .form-box select {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      font-size: 14px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-box input:focus,
+    .form-box select:focus {
+      border-color: #289368;
+      box-shadow: 0 0 6px rgba(40, 53, 147, 0.3);
+      outline: none;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 14px;
+      background: #289368;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .form-box button:hover {
+      background: #05c51b;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+      }
+
+      header nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Library Manager</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/add">Add Book</a>
+      <a href="/books">View Books</a>
+    </nav>
+    <div>
+      <a href="/add"><button class="btn-add">Add Book</button></a>
+    </div>
+  </header>
+
+  <section class="form-section">
+    <div class="form-box">
+      <h1>Edit Book</h1>
+      <form method="post" action="/update-book/<%= book.bookNo %>">
+        
+        <label>Book No.</label>
+        <input type="text" name="bookNo" value="<%= book.bookNo %>" disabled>
+
+        <label>Book Name</label>
+        <input type="text" name="bookName" value="<%= book.bookName %>" required>
+
+        <label>Author</label>
+        <input type="text" name="author" value="<%= book.author %>" required>
+
+        <label>Language</label>
+        <input type="text" name="language" value="<%= book.language %>" required>
+
+        <label>Published Date</label>
+        <input type="date" name="publishedDate" value="<%= book.publishedDate %>" required>
+
+        <label>Duplicates</label>
+        <input type="number" name="duplicates" value="<%= book.duplicates %>" required>
+
+        <label>Image URL</label>
+        <input type="url" name="imageUrl" value="<%= book.imageUrl %>">
+
+        <button type="submit">Update Book</button>
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>

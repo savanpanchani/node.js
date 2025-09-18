@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Node.js - Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1e2a38;
+      --secondary: #7f8c8d;
+      --accent: #3cba54;
+      --bg: #fdfdfd;
+      --text-dark: #2c3e50;
+      --text-light: #ffffff;
+      --card-bg: #ffffff;
+      --radius: 12px;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.12);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      list-style: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; }
+
+    /* Header */
+    header {
+      width: 100%;
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--card-bg);
+      box-shadow: var(--shadow-sm);
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo a {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .logo span { color: var(--accent); }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav a {
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+    nav a:hover, nav a.active { color: var(--accent); }
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent);
+    }
+    .toggle-icon { display: none; font-size: 1.4rem; cursor: pointer; }
+
+    /* Hero */
+    .hero {
+      padding: 160px 2rem 100px;
+      text-align: center;
+      background: linear-gradient(135deg, #1e2a38, #3cba54);
+      color: var(--text-light);
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    .cta-button {
+      background: var(--accent);
+      color: var(--text-light);
+      padding: 0.8rem 2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      margin: 0.5rem;
+      display: inline-block;
+    }
+    .cta-button:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .cta-button.secondary {
+      background: transparent;
+      color: var(--text-light);
+      border: 1.5px solid var(--text-light);
+    }
+    .cta-button.secondary:hover { background: var(--text-light); color: var(--primary); }
+
+    /* Contact Section */
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-title { text-align: center; margin-bottom: 3rem; }
+    .section-title h2 { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
+    .section-title p { color: var(--secondary); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    /* Info Cards */
+    .contact-info {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .info-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(60, 186, 84, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-form h3 { margin-bottom: 1.5rem; color: var(--primary); }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    .form-control {
+      width: 100%; padding: 0.9rem 1rem; border: 1px solid #ddd;
+      border-radius: var(--radius);
+      background: #fafafa;
+    }
+    .form-control:focus {
+      outline: none; border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(60, 186, 84, 0.2);
+    }
+    textarea.form-control { min-height: 150px; resize: vertical; }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #3cba54, #2e9c47);
+      color: var(--text-light);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      width: 100%;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* Map */
+    .map-section { padding: 0 2rem 5rem; }
+    .map-wrapper {
+      height: 400px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: var(--card-bg);
+        padding: 1rem;
+        position: absolute;
+        top: 70px; left: 0; width: 100%;
+      }
+      nav.show { display: flex; }
+      .toggle-icon { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo"><a href="/">Node<span>.Js</span></a></div>
+      <nav id="nav">
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </nav>
+      <div class="toggle-icon" id="toggleBtn"><i class="fas fa-bars"></i></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Get In Touch</h1>
+      <p>Have questions about Node.js or our services? Reach out to our team and we'll get back to you soon.</p>
+      <a href="#contact-form" class="cta-button">Send a Message</a>
+      <a href="/" class="cta-button secondary">Back Home</a>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-container">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>We’d love to hear from you. Choose your preferred method of contact below.</p>
+      </div>
+      <div class="contact-grid">
+        <!-- Info Cards -->
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><h4>Our Office</h4><p>123 Node Street, San Francisco, CA 94107</p></div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div><h4>Email Us</h4><a href="mailto:info@nodejsdemo.com">info@nodejsdemo.com</a></div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+            <div><h4>Call Us</h4><a href="tel:+14155550123">+1 (415) 555-0123</a></div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-clock"></i></div>
+            <div><h4>Working Hours</h4><p>Mon - Fri: 9am - 5pm PST</p></div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form" id="contact-form">
+          <h3>Send Us a Message</h3>
+          <form>
+            <div class="form-row">
+              <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" class="form-control" required></div>
+              <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" class="form-control" required></div>
+            </div>
+            <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" class="form-control" required></div>
+            <div class="form-group"><label for="message">Your Message</label><textarea id="message" class="form-control" required></textarea></div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section class="map-section">
+      <div class="map-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.063707779716!2d-122.40097248468262!3d37.78583497975788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064df9f16fb%3A0xcacffdbb5d9bfb87!2sNode%20Street!5e0!3m2!1sen!2sus!4v1694317899000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const nav = document.getElementById('nav');
+    toggleBtn.addEventListener('click', () => nav.classList.toggle('show'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Books — Card View</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      min-height: 100vh;
+    }
+    header.main-header {
+      background: #289368;
+      color: #fff;
+      padding: 18px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header.main-header .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header.main-header .nav-links a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      margin: 0 12px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    header.main-header .nav-links a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+    header.main-header .btn-add {
+      background: #f59e0b;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    header.main-header .btn-add:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .header h1 {
+      font-size: 2rem;
+      color: #289368;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    }
+
+    .card-media {
+      width: 100%;
+      height: 220px;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .card-media img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .book-title {
+      font-weight: 700;
+      color: #289368;
+      font-size: 1.2rem;
+    }
+    .book-no {
+      font-size: 0.85rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+    .tag {
+      padding: 4px 10px;
+      background: #fcd34d;
+      color: #92400e;
+      font-weight: 600;
+      border-radius: 12px;
+      font-size: 0.75rem;
+    }
+
+    .info {
+      font-size: 0.9rem;
+      color: #374151;
+    }
+    .info small {
+      color: #6b7280;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+    }
+    .card-footer div {
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .card-footer .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .btn-edit {
+      background: #10b981;
+      color: #fff;
+    }
+    .btn-edit:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+    .btn-delete {
+      background: #ef4444;
+      color: #fff;
+    }
+    .btn-delete:hover {
+      background: #b91c1c;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+      .card-media { height: 180px; }
+      .header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container">
+      <div class="nav-links">
+        <a href="/">Library Manager</a>
+      </div>
+      <div>
+        <a href="/add"><button class="btn btn-add">Add Book</button></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <header class="header">
+      <h1>Library Books</h1>
+    </header>
+
+    <section class="cards">
+      <% books.forEach((book) => { %>
+        <article class="card">
+          <div class="card-media">
+            <% if (book.imageUrl) { %>
+              <img src="<%= book.imageUrl %>" alt="Cover of <%= book.bookName %>" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x300?text=No+Image'" />
+            <% } else { %>
+              <img src="https://via.placeholder.com/400x300?text=No+Image" alt="No image available" />
+            <% } %>
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <div>
+                <div class="book-title"><%= book.bookName %></div>
+                <div class="book-no">Book No: <span style="color:#0d38ad"><%= book.bookNo %></span></div>
+              </div>
+              <div class="tag"><%= book.language || 'N/A' %></div>
+            </div>
+
+            <div class="info">
+              <small>Author</small> 
+              <div><%= book.author || 'Unknown' %></div>
+            </div>
+
+            <div class="info">
+              <small>Published Date</small>
+              <div><%= book.publishedDate ? new Date(book.publishedDate).toLocaleDateString() : '—' %></div>
+            </div>
+
+            <div style="flex:1"></div>
+
+            <div class="card-footer">
+              <div>Duplicates: <strong><%= book.duplicates || 1 %></strong></div>
+              <div style="display:flex;gap:8px">
+                <a href="/edit-book/<%= book.bookNo %>"><button class="btn btn-edit">Edit</button></a>
+                <a href="/delete-book/<%= book.bookNo %>"><button class="btn btn-delete">Delete</button></a>
+              </div>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </section>
+  </div>
+</body>
+</html>
