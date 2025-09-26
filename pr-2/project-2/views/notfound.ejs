@@ -3,93 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 Not Found</title>
+  <title>404 Not Found - BookStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-  
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #e9f0ff, #f9f9f9);
-  color: #333;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(120deg, #fff7ec, #f1e1c6);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-header {
-  background: rgba(31, 59, 136, 0.9);
-  padding: 18px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
+    header {
+      background: #3e2723;
+      padding: 16px 0;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
 
-header .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-header .container a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 17px;
-}
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
 
-.not-found-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  padding: 40px 20px;
-}
+    nav a {
+      color: #fcecd2;
+      text-decoration: none;
+      margin-left: 24px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
 
-.not-found-box {
-  background: #fff;
-  padding: 60px 50px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  text-align: center;
-  max-width: 600px;
-}
+    nav a:hover {
+      color: #ffb300;
+    }
 
-.not-found-box h1 {
-  font-size: 60px;
-  color: #1f3b88;
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 20px;
-}
+    .not-found {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      background: url('https://i.ibb.co/2hxWk2F/bookshelf-bg.jpg') no-repeat center/cover;
+      color: #3e2723;
+    }
 
-.not-found-box p {
-  font-size: 18px;
-  margin-bottom: 30px;
-}
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.85);
+    }
 
-.not-found-box a {
-  background: #1f3b88;
-  color: white;
-  text-decoration: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
 
-.not-found-box a:hover {
-  background: #152c63;
-}
+    .content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 100px;
+      color: #5d4037;
+      margin-bottom: 10px;
+    }
 
+    .content h2 {
+      font-size: 26px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #4e342e;
+    }
+
+    .content p {
+      font-size: 18px;
+      color: #6d4c41;
+      margin-bottom: 30px;
+    }
+
+    .content a {
+      background: #8d6e63;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .content a:hover {
+      background: #5d4037;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: #3e2723;
+      color: #fcecd2;
+      text-align: center;
+      padding: 14px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .content h1 {
+        font-size: 70px;
+      }
+      .content h2 {
+        font-size: 22px;
+      }
+    }
   </style>
 </head>
 <body>
-<h1>404 - Page Not Found</h1>
-<a href="/">Go Back Home</a>
+
+  <header>
+    <div class="container">
+      <a href="/" class="logo">BookNest</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/books">Books</a>
+        <a href="/authors">Authors</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="not-found">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>404</h1>
+      <h2>Oops! Page Not Found</h2>
+      <p>It seems the page you’re looking for has wandered off the shelf.<br>Let’s get you back to your reading list!</p>
+      <a href="/">Back to Home</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 BookNest. All Rights Reserved.
+  </footer>
+
 </body>
 </html>

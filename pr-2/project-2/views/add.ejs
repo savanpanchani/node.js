@@ -3,143 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Add Book - Library Manager</title>
+  <title>Add Book — Book Haven</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background: #f4f4f9;
-      color: #333;
+      background: linear-gradient(135deg, #f5f7fa, #eaf4ec);
       min-height: 100vh;
+      color: #333;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* Header */
     header {
-      background: #289368;
-      padding: 20px 40px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      background: #2d6a4f;
+      padding: 18px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    header .logo {
-      font-size: 22px;
-      font-weight: bold;
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
       color: #fff;
-      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
     }
 
-    header nav a {
+    .logo span {
+      font-size: 1.7rem;
+    }
+
+    nav a {
+      color: #fff;
       text-decoration: none;
-      color: #fff;
-      margin-left: 20px;
+      margin: 0 14px;
       font-weight: 500;
       transition: color 0.3s ease;
     }
 
-    header nav a:hover {
-      color: #ffca28;
+    nav a:hover {
+      color: #ffd166;
     }
 
-    header .btn-add {
-      background: #ffca28;
-      color: #289368;
+    .btn-add {
+      background: #ffb703;
+      color: #fff;
+      border: none;
       padding: 10px 18px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: 600;
-      transition: background 0.3s ease;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    header .btn-add:hover {
-      background: #f9a825;
+    .btn-add:hover {
+      background: #f48c06;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(244, 140, 6, 0.3);
     }
 
+    /* Form Section */
     .form-section {
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
     }
 
     .form-box {
-      background: #fff;
-      padding: 40px 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      max-width: 500px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      padding: 45px 40px;
+      max-width: 550px;
       width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative Shelf Shadow */
+    .form-box::before {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 20px;
+      right: 20px;
+      height: 8px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 0 0 20px 20px;
+      filter: blur(2px);
     }
 
     .form-box h1 {
-      margin-bottom: 25px;
       text-align: center;
-      color: #289368;
-      font-size: 28px;
+      margin-bottom: 30px;
+      color: #2d6a4f;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
 
-    .form-box label {
+    .form-box h1 span {
+      color: #ffb703;
+      font-size: 1.7rem;
+    }
+
+    label {
       display: block;
+      font-weight: 600;
       margin-bottom: 6px;
-      font-weight: 500;
-      color: #555;
+      color: #374151;
     }
 
-    .form-box input,
-    .form-box select {
+    input, select {
       width: 100%;
       padding: 12px 14px;
       margin-bottom: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid #ccc;
-      background-color: #f9f9f9;
-      font-size: 14px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background: #fafafa;
+      font-size: 15px;
+      transition: all 0.3s ease;
     }
 
-    .form-box input:focus,
-    .form-box select:focus {
-      border-color: #283593;
-      box-shadow: 0 0 6px rgba(40, 53, 147, 0.3);
+    input:focus, select:focus {
+      border-color: #2d6a4f;
+      box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.2);
       outline: none;
+      background: #fff;
     }
 
-    .form-box button {
+    button[type="submit"] {
       width: 100%;
-      padding: 14px;
-      background: #289368;
+      background: #2d6a4f;
       color: #fff;
       border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 16px;
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: 10px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
-    .form-box button:hover {
-      background: #05c51b;
+    button[type="submit"]:hover {
+      background: #238a5a;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(35, 138, 90, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+      background: #f0f0f0;
+      border-top: 1px solid #ddd;
     }
 
     @media (max-width: 600px) {
       header {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         padding: 20px;
       }
-
       header nav {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
+      }
+      .form-box {
+        padding: 30px 25px;
       }
     }
   </style>
@@ -147,20 +199,18 @@
 <body>
 
   <header>
-    <div class="logo">Library Manager</div>
+    <div class="logo"><span>📖</span> Book Haven</div>
     <nav>
       <a href="/">Home</a>
       <a href="/add">Add Book</a>
-      <a href="/books">View Books</a>
+      <a href="/books">Browse</a>
     </nav>
-    <div>
-      <a href="/add"><button class="btn-add">Add Book</button></a>
-    </div>
+    <button class="btn-add" onclick="location.href='/add'">+ Add Book</button>
   </header>
 
   <section class="form-section">
     <div class="form-box">
-      <h1>Add New Book</h1>
+      <h1><span>📚</span> Add New Book</h1>
       <form method="post" action="/add-book">
         <label>Book No.</label>
         <input type="text" name="bookNo" placeholder="Enter book number" required>
@@ -169,7 +219,7 @@
         <input type="text" name="bookName" placeholder="Enter book name" required>
 
         <label>Author</label>
-        <input type="text" name="author" placeholder="Enter author's name" required>
+        <input type="text" name="author" placeholder="Enter author’s name" required>
 
         <label>Language</label>
         <input type="text" name="language" placeholder="Enter language" required>
@@ -178,15 +228,19 @@
         <input type="date" name="publishedDate" required>
 
         <label>Duplicates</label>
-        <input type="number" name="duplicates" placeholder="Enter number of duplicates" required>
+        <input type="number" name="duplicates" placeholder="Number of copies" required>
 
         <label>Image URL</label>
-        <input type="url" name="imageUrl" placeholder="Enter image URL">
+        <input type="url" name="imageUrl" placeholder="Paste book cover image link">
 
         <button type="submit">Add Book</button>
       </form>
     </div>
   </section>
+
+  <footer>
+    © 2025 Book Haven — Your Gateway to Great Reads
+  </footer>
 
 </body>
 </html>

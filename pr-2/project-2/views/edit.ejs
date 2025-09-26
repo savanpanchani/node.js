@@ -3,143 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edit Book - Library Manager</title>
+  <title>Edit Book - Bookstore UI</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background: #f4f4f9;
-      color: #333;
+      background: linear-gradient(135deg, #fef6e4, #f7ede2);
       min-height: 100vh;
+      color: #333;
     }
 
+    /* Header */
     header {
-      background: #289368;
-      padding: 20px 40px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background: #2a9d8f;
+      color: #fff;
+      padding: 18px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       position: sticky;
       top: 0;
       z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
 
-    header .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #fff;
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
       letter-spacing: 1px;
     }
 
-    header nav a {
-      text-decoration: none;
+    nav a {
       color: #fff;
-      margin-left: 20px;
+      text-decoration: none;
+      margin: 0 16px;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: 0.3s;
     }
 
-    header nav a:hover {
+    nav a:hover {
       color: #ffca28;
     }
 
-    header .btn-add {
+    .btn-add {
       background: #ffca28;
-      color: #289368;
+      color: #2a9d8f;
       padding: 10px 18px;
-      border-radius: 6px;
+      border: none;
+      border-radius: 8px;
       font-weight: 600;
-      transition: background 0.3s ease;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    header .btn-add:hover {
-      background: #f9a825;
+    .btn-add:hover {
+      background: #f4a261;
+      color: #fff;
     }
 
+    /* Form Section */
     .form-section {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 60px 20px;
+      padding: 70px 20px;
     }
 
     .form-box {
       background: #fff;
-      padding: 40px 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      max-width: 500px;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+      padding: 40px;
+      max-width: 900px;
       width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
     }
 
-    .form-box h1 {
-      margin-bottom: 25px;
+    .book-preview {
+      flex: 1 1 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f4f4;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .book-preview img {
+      width: 100%;
+      max-width: 240px;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+
+    .form-details {
+      flex: 1 1 400px;
+    }
+
+    .form-details h1 {
       text-align: center;
-      color: #289368;
+      color: #2a9d8f;
       font-size: 28px;
+      margin-bottom: 25px;
     }
 
-    .form-box label {
+    label {
+      font-weight: 500;
       display: block;
       margin-bottom: 6px;
-      font-weight: 500;
-      color: #555;
+      color: #444;
     }
 
-    .form-box input,
-    .form-box select {
+    input, select {
       width: 100%;
       padding: 12px 14px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      background-color: #f9f9f9;
-      font-size: 14px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background: #f9f9f9;
+      transition: 0.3s;
+      font-size: 15px;
     }
 
-    .form-box input:focus,
-    .form-box select:focus {
-      border-color: #289368;
-      box-shadow: 0 0 6px rgba(40, 53, 147, 0.3);
+    input:focus {
+      border-color: #2a9d8f;
+      box-shadow: 0 0 6px rgba(42,157,143,0.3);
       outline: none;
     }
 
-    .form-box button {
+    button[type="submit"] {
       width: 100%;
       padding: 14px;
-      background: #289368;
-      color: #fff;
+      background: #2a9d8f;
       border: none;
+      color: #fff;
       border-radius: 8px;
-      font-weight: bold;
       font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: 0.3s;
     }
 
-    .form-box button:hover {
-      background: #05c51b;
+    button[type="submit"]:hover {
+      background: #21867a;
     }
 
-    @media (max-width: 600px) {
-      header {
+    @media (max-width: 768px) {
+      .form-box {
         flex-direction: column;
-        gap: 15px;
-        padding: 20px;
+        align-items: center;
+        padding: 30px 20px;
       }
 
-      header nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+      .book-preview {
+        width: 80%;
+      }
+
+      .form-details {
+        width: 100%;
       }
     }
   </style>
@@ -147,45 +176,49 @@
 <body>
 
   <header>
-    <div class="logo">Library Manager</div>
+    <div class="logo">📚 Bookstore Manager</div>
     <nav>
       <a href="/">Home</a>
       <a href="/add">Add Book</a>
-      <a href="/books">View Books</a>
+      <a href="/books">Books</a>
     </nav>
-    <div>
-      <a href="/add"><button class="btn-add">Add Book</button></a>
-    </div>
+    <button class="btn-add" onclick="location.href='/add'">+ Add Book</button>
   </header>
 
   <section class="form-section">
     <div class="form-box">
-      <h1>Edit Book</h1>
-      <form method="post" action="/update-book/<%= book.bookNo %>">
-        
-        <label>Book No.</label>
-        <input type="text" name="bookNo" value="<%= book.bookNo %>" disabled>
+      <div class="book-preview">
+        <img src="<%= book.imageUrl || 'https://via.placeholder.com/240x340?text=Book+Cover' %>" alt="Book Cover"/>
+      </div>
+      
+      <div class="form-details">
+        <h1>Edit Book</h1>
+        <form method="post" action="/update-book/<%= book.bookNo %>">
+          
+          <label>Book No.</label>
+          <input type="text" name="bookNo" value="<%= book.bookNo %>" disabled>
 
-        <label>Book Name</label>
-        <input type="text" name="bookName" value="<%= book.bookName %>" required>
+          <label>Book Name</label>
+          <input type="text" name="bookName" value="<%= book.bookName %>" required>
 
-        <label>Author</label>
-        <input type="text" name="author" value="<%= book.author %>" required>
+          <label>Author</label>
+          <input type="text" name="author" value="<%= book.author %>" required>
 
-        <label>Language</label>
-        <input type="text" name="language" value="<%= book.language %>" required>
+          <label>Language</label>
+          <input type="text" name="language" value="<%= book.language %>" required>
 
-        <label>Published Date</label>
-        <input type="date" name="publishedDate" value="<%= book.publishedDate %>" required>
+          <label>Published Date</label>
+          <input type="date" name="publishedDate" value="<%= book.publishedDate %>" required>
 
-        <label>Duplicates</label>
-        <input type="number" name="duplicates" value="<%= book.duplicates %>" required>
+          <label>Duplicates</label>
+          <input type="number" name="duplicates" value="<%= book.duplicates %>" required>
 
-        <label>Image URL</label>
-        <input type="url" name="imageUrl" value="<%= book.imageUrl %>">
+          <label>Image URL</label>
+          <input type="url" name="imageUrl" value="<%= book.imageUrl %>">
 
-        <button type="submit">Update Book</button>
-      </form>
+          <button type="submit">Update Book</button>
+        </form>
+      </div>
     </div>
   </section>
 
