@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Store</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4ede4;
+      color: #3b2f2f;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    }
+
+    /* Header */
+    .main-header {
+      background: linear-gradient(to right, #5a3825, #3b2f2f);
+      padding: 18px 0;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .main-header .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #f4ede4;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #f4ede4;
+      font-weight: 600;
+      margin-left: 20px;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #e0c097;
+    }
+
+    /* Banner */
+    .banner {
+      background: url('https://i.imgur.com/xwWxYfC.jpg') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 40px;
+      position: relative;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .banner::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(40, 25, 20, 0.65);
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .banner h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: #f9f3e9;
+    }
+
+    .banner p {
+      font-size: 1.2rem;
+      color: #f0e5d8;
+    }
+
+    /* Section Title */
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #5a3825;
+      font-size: 2.2rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Book List */
+    .book-list {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    /* Book Cards */
+    .book-card {
+      background: #fffdf8;
+      border-radius: 10px;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
+      width: 280px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e5d4b1;
+      transition: all 0.3s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(90, 56, 37, 0.25);
+    }
+
+    .book-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 2px solid #d1b899;
+    }
+
+    .book-content {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .book-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #3b2f2f;
+      margin-bottom: 8px;
+    }
+
+    .book-meta {
+      font-size: 15px;
+      color: #5a4b3c;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .book-meta span {
+      display: block;
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .actions button {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .edit-btn {
+      background-color: #8b5e3b;
+    }
+
+    .edit-btn:hover {
+      background-color: #6e4429;
+    }
+
+    .delete-btn {
+      background-color: #b23b3b;
+    }
+
+    .delete-btn:hover {
+      background-color: #8b2323;
+    }
+
+    .add-btn {
+      padding: 10px 18px;
+      background: #8b5e3b;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .add-btn:hover {
+      background: #6e4429;
+      transform: translateY(-2px);
+    }
+
+    .no-books {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .no-books-text {
+      color: #8b2323;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-header .container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .book-card {
+        width: 100%;
+      }
+
+      .banner h1 {
+        font-size: 2.2rem;
+      }
+
+      .banner p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="container">
+      <a href="/" class="logo">📚 The Book Haven</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/add"><button class="add-btn">➕ Add Book</button></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="banner">
+    <div class="banner-content">
+      <h1>Welcome to The Book Haven</h1>
+      <p>Where every story finds its reader.</p>
+    </div>
+  </section>
+
+  <section class="book-list">
+    <h2>Explore Our Shelves</h2>
+
+    <div class="card-container">
+      <% if (notFound) { %>
+        <div class="no-books">
+          <p class="no-books-text">No books available at the moment.</p>
+        </div>
+      <% } else { %>
+        <% books.forEach((book) => { %>
+          <div class="book-card" align="center">
+            <a href="/view-book/<%= book._id %>">
+              <img src="<%= book.image %>" alt="Book Cover" class="book-image">
+            </a>
+            <div class="book-content">
+              <div class="book-title"><%= book.title %></div>
+              <div class="book-meta">
+                <span><strong>Author:</strong> <%= book.author %></span>
+                <span><strong>Language:</strong> <%= book.language %></span>
+                <span><strong>Genre:</strong> <%= book.genre %></span>
+                <span><strong>Year:</strong> <%= book.publishedYear %></span>
+              </div>
+              <div class="actions">
+                <a href="/edit-book/<%= book._id %>"><button class="edit-btn">Edit</button></a>
+                <a href="/delete-book/<%= book._id %>"><button class="delete-btn">Delete</button></a>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      <% } %>
+    </div>
+  </section>
+</body>
+</html>

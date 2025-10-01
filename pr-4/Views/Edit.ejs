@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Book | Grand Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f3e7;
+      color: #3a2e20;
+      line-height: 1.6;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    }
+
+    header {
+      background: #5b3a1e;
+      color: #f8f5f0;
+      padding: 20px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      text-decoration: none;
+      color: #f8f5f0;
+    }
+
+    nav a {
+      color: #f8f5f0;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f2d3a6;
+    }
+
+    .banner {
+      background: linear-gradient(rgba(91, 58, 30, 0.7), rgba(91, 58, 30, 0.7)), 
+                  url('https://images.unsplash.com/photo-1524578271613-d550eacf6090?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: #fdfaf6;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+
+    .banner h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .banner p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    .form-section {
+      display: flex;
+      justify-content: center;
+      padding: 60px 20px;
+    }
+
+    .form-card {
+      background: #fffef8;
+      border: 1px solid #e2d7c0;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 650px;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(58, 46, 32, 0.15);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      color: #5b3a1e;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 15px;
+      color: #4e3b2f;
+    }
+
+    input, select {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #c4b59b;
+      font-size: 14px;
+      background-color: #fffaf3;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #b6905c;
+      box-shadow: 0 0 0 2px rgba(182, 144, 92, 0.3);
+      outline: none;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    button[type="submit"] {
+      background: #b6905c;
+      color: #fffdf7;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background: #a17749;
+    }
+
+    footer {
+      background: #5b3a1e;
+      color: #f8f5f0;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .banner h1 {
+        font-size: 2.3rem;
+      }
+      .banner p {
+        font-size: 1rem;
+      }
+      .form-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">📚 Grand Library</a>
+      <nav>
+        <a href="/">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="banner">
+    <h1>Refine the Details</h1>
+    <p>Edit and preserve your book’s information with care.</p>
+  </section>
+
+  <section class="form-section">
+    <div class="form-card">
+      <h2>Edit Book</h2>
+      <form action="/edit/<%= book.id %>" method="post">
+        
+        <div class="form-group">
+          <label>Image URL</label>
+          <input type="url" name="image" value="<%= book.image %>" required>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" name="description" value="<%= book.description %>" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" value="<%= book.title %>" required>
+          </div>
+          <div class="form-group">
+            <label>Author</label>
+            <input type="text" name="author" value="<%= book.author %>" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" name="country" value="<%= book.country %>" required>
+          </div>
+          <div class="form-group">
+            <label>Language</label>
+            <select name="language" required>
+              <option value="">-- Select Language --</option>
+              <option value="Hindi" <%= book.language === 'Hindi' ? 'selected' : '' %>>Hindi</option>
+              <option value="English" <%= book.language === 'English' ? 'selected' : '' %>>English</option>
+              <option value="French" <%= book.language === 'French' ? 'selected' : '' %>>French</option>
+              <option value="Spanish" <%= book.language === 'Spanish' ? 'selected' : '' %>>Spanish</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Genre</label>
+          <select name="genre" required>
+            <option value="">Select Genre</option>
+            <option value="Biography" <%= book.genre === 'Biography' ? 'selected' : '' %>>Biography</option>
+            <option value="Autobiography" <%= book.genre === 'Autobiography' ? 'selected' : '' %>>Autobiography</option>
+            <option value="Historical" <%= book.genre === 'Historical' ? 'selected' : '' %>>Historical</option>
+            <option value="Horror" <%= book.genre === 'Horror' ? 'selected' : '' %>>Horror</option>
+            <option value="Adventure" <%= book.genre === 'Adventure' ? 'selected' : '' %>>Adventure</option>
+            <option value="Drama" <%= book.genre === 'Drama' ? 'selected' : '' %>>Drama</option>
+            <option value="Spiritual" <%= book.genre === 'Spiritual' ? 'selected' : '' %>>Spiritual</option>
+            <option value="Educational" <%= book.genre === 'Educational' ? 'selected' : '' %>>Educational</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Edition</label>
+            <input type="text" name="edition" value="<%= book.edition %>" required>
+          </div>
+          <div class="form-group">
+            <label>Pages</label>
+            <input type="text" name="pages" value="<%= book.pages %>" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" name="price" value="<%= book.price %>" required>
+          </div>
+          <div class="form-group">
+            <label>Published Year</label>
+            <input type="number" name="publishedYear" value="<%= book.publishedYear %>" required>
+          </div>
+        </div>
+
+        <button type="submit">Update Book</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Grand Library | Curating timeless stories 📖
+  </footer>
+
+</body>
+</html>
