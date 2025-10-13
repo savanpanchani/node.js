@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Movie</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #222;
+    }
+
+
+    .main-header {
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .main-header .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 120px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #000;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #111;
+      transform: translateY(-2px);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 480px;
+      margin: 20px auto 60px;
+      padding: 18px 22px;
+    }
+
+    h2.text-center {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .image-preview {
+      display: block;
+      max-width: 200px;
+      height: auto;
+      margin: 0 auto 15px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      background: #f7f7f7;
+      padding: 5px;
+      object-fit: cover;
+    }
+
+.form-container {
+  max-width: 450px;
+  margin: 40px auto 30px;
+  padding: 25px 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+.form-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 22px;
+  font-size: 24px;
+  color: #222;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 10px 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #e31c25;
+  box-shadow: 0 0 5px rgba(227, 28, 37, 0.3);
+  outline: none;
+}
+
+.btn-update {
+  width: 100%;
+  padding: 12px; 
+  background: #e31c25;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+.btn-update:hover {
+  background: #c1272d;
+  transform: translateY(-1px);
+}
+
+ 
+    @media (max-width: 600px) {
+      .card {
+        max-width: 90%;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="container">
+      <a href="/" class="logo">
+        <img src="https://cdn.prod.website-files.com/600ee75084e3fe0e5731624c/65b6384089ec9e265952391f_bookmyshow-logo-vector-removebg-preview%20(1).png"
+          alt="logo">
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/add">Add Movie</a>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="container">
+    <div class="card">
+      <form action="/update-movie/<%= movie.id %>" method="post" enctype="multipart/form-data">
+           <h2 class="text-center">Edit Movie</h2>
+
+     
+
+              <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" value="<%= movie.title %>" required />
+              </div>
+
+              <div class="form-group">
+                <label>Director</label>
+                <input type="text" name="director" value="<%= movie.director %>" required />
+              </div>
+
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" name="description" value="<%= movie.description %>" required />
+              </div>
+
+              <div class="form-group">
+                <label>Genre</label>
+                <input type="text" name="genre" value="<%= movie.genre %>" required />
+              </div>
+
+              <div class="form-group">
+                <label>Year</label>
+                <input type="number" name="year" value="<%= movie.year %>" required />
+              </div>
+
+              <div class="form-group">
+                <label>Category</label>
+                <input type="text" name="category" value="<%= movie.category %>" required />
+              </div>
+
+              <div class="form-group">
+                <label>Upload New Image</label>
+                <input type="file" name="image" />
+                   <% if (movie.image) { %>
+          <img src="/<%= movie.image %>" class="image-preview" alt="<%= movie.title %>">
+          <% } else { %>
+            <img src="https://via.placeholder.com/200x300" class="image-preview" alt="No image">
+            <% } %>
+              </div>
+
+              <button type="submit" class="btn-update">Update Movie</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

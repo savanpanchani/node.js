@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie App</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fafafa;
+      color: #222;
+    }
+
+  .main-header {
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  
+  }
+
+  .main-header .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo img {
+    width: 130px;
+    margin-top: 3px;
+    transition: transform 0.3s ease;
+  }
+
+  .logo img:hover {
+    transform: scale(1.05);
+  }
+  .nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #000;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+
+.nav-links a:hover {
+  color: #111;
+  transform: translateY(-2px);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+
+.nav-links a {
+  opacity: 0.9;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    gap: 15px;
+  }
+  .nav-links a {
+    font-size: 14px;
+  }
+}
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px; 
+  padding: 40px 60px;
+  justify-content: center;
+  align-items: start;
+}
+
+
+
+.movie-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+ 
+}
+
+
+.movie-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+.movie-card img {
+  width: 100%;
+  height: 165px;
+  object-fit: cover;
+  border-bottom: 2px solid #e31c25;
+}
+
+
+.movie-content {
+  padding: 12px;
+}
+
+.movie-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #111;
+  text-transform: capitalize;
+}
+
+.movie-info {
+  font-size: 14px;
+  color: #444;
+  margin: 2px 0;
+}
+
+.movie-info strong {
+  color: #e31c25;
+}
+.movie-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover;
+  border-bottom: 2px solid #e31c25;
+}
+
+.movie-content {
+  padding: 15px; 
+}
+
+.movie-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 8px; 
+  color: #111;
+  text-transform: capitalize;
+}
+
+.movie-info {
+  font-size: 14px;
+  color: #444;
+  margin: 3px 0;
+}
+
+.button-group {
+  margin-top: 12px; 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+
+.button-group {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.action-btn {
+  text-decoration: none;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #e31c25;
+  color: white;
+}
+.delete-btn:hover {
+  background-color: #b91c23;
+}
+
+
+.view-btn {
+  background-color: #222;
+  color: #fff;
+}
+.view-btn:hover {
+  background-color: #444;
+}
+
+
+@media (max-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding: 20px;
+  }
+
+  .movie-card {
+    width: 100%;
+  }
+}
+
+.filter-section {
+  background: linear-gradient(90deg, #ffffff 0%, #fff 60%, #fef6f6 100%);
+  padding: 18px 0;
+  box-shadow: 0 2px 10px rgba(227, 28, 37, 0.08);
+  transition: all 0.3s ease;
+}
+
+.filter-section:hover {
+  box-shadow: 0 4px 16px rgba(227, 28, 37, 0.12);
+}
+
+.filter-section .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+.filter-btn {
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: 2px solid #e31c25;
+  color: #e31c25;
+  background: transparent;
+  margin: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 0 0 #e31c25;
+}
+
+.filter-btn:hover {
+  background-color: #e31c25;
+  color: #fff;
+  box-shadow: inset 0 0 0 2px #fff;
+  transform: translateY(-2px);
+}
+
+.filter-btn:active {
+  transform: scale(0.97);
+}
+
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #e31c25;
+  border-radius: 40px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 5px rgba(227, 28, 37, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-bar:hover {
+  box-shadow: 0 3px 10px rgba(227, 28, 37, 0.2);
+}
+
+.search-bar input {
+  width: 220px;
+  padding: 8px 10px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 15px;
+  color: #111;
+  font-weight: 500;
+}
+
+.search-bar input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.search-btn {
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: none;
+  background: #e31c25;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #fff;
+  color: #e31c25;
+  border: 1.5px solid #e31c25;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(227, 28, 37, 0.2);
+}
+
+
+@media (max-width: 768px) {
+  .filter-section .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-btn {
+    font-size: 14px;
+    margin: 4px 3px;
+  }
+
+  .search-bar {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header class="main-header">
+  <div class="container">
+    <a href="/" class="logo">
+      <img src="https://cdn.prod.website-files.com/600ee75084e3fe0e5731624c/65b6384089ec9e265952391f_bookmyshow-logo-vector-removebg-preview%20(1).png" alt="logo">
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/add">Add Movie</a>
+    </div>
+  </div>
+</header>
+
+
+    <div class="filter-section ">
+        <div class="container d-flex">
+            <div class="category">
+                <!-- category -->
+                <div class="mb-3">
+                    <form action="/" method="get" style="display:inline-block;">
+                        <input type="hidden" name="category" value="Bollywood">
+                        <button type="submit" class="mx-1 filter-btn">Bollywood</button>
+                    </form>
+
+                    <form action="/" method="get" style="display:inline-block;">
+                        <input type="hidden" name="category" value="Hollywood">
+                        <button type="submit" class="mx-1 filter-btn">Hollywood</button>
+                    </form>
+
+                    <form action="/" method="get" style="display:inline-block;">
+                        <input type="hidden" name="category" value="Tollywood">
+                        <button type="submit" class="mx-1 filter-btn">Tollywood</button>
+                    </form>
+
+                    <form action="/" method="get" style="display:inline-block;">
+                        <input type="hidden" name="category" value="Gujarati">
+                        <button type="submit" class="mx-1 filter-btn">Gujarati</button>
+                    </form>
+
+                    <form action="/" method="get" style="display:inline-block;">
+                        <input type="hidden" name="category" value="">
+                        <button type="submit" class="mx-1 filter-btn">All</button>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="search">
+
+                <!-- search -->
+                <div class="search-bar mt-5">
+                    <form class="d-flex">
+                        <input type="text" name="search" />
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="movie-grid">
+        <% allMovies.forEach((movie)=> { %>
+            <div class="movie-card">
+                <a href="#">
+                    <!-- <% if (movie.image) { %> -->
+                        <img src="/<%= movie.image %>" alt="<%= movie.title %>">
+                        <!-- <% } else { %>
+                            <img src="https://via.placeholder.com/300x400" alt="No image">
+                            <% } %> -->
+                </a>
+                <div class="movie-content">
+                    <div class="movie-title">
+                        <%= movie.title %>
+                    </div>
+                    <div class="movie-info"><strong>Director:</strong>
+                        <%= movie.director %>
+                    </div>
+                    <div class="movie-info"><strong>Genre:</strong>
+                        <%= movie.genre %>
+                    </div>
+                    <div class="movie-info"><strong>Year:</strong>
+                        <%= movie.year %>
+                    </div>
+                    <div class="button-group">
+                        <a href="/edit-movie/<%= movie.id %>" class="action-btn edit-btn">Edit</a>
+                        <a href="/delete-movie/<%= movie.id %>" class="action-btn delete-btn">Delete</a>
+                        <a href="/view-movie/<%= movie._id %>" class="action-btn delete-btn">View</a>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+    </div>
+</body>
+</html>
