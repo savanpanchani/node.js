@@ -6,21 +6,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Movie</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f8f8f8;
-      color: #222;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
+    body {
+      background: linear-gradient(135deg, #1c1c1c, #3b0a0a);
+      min-height: 100vh;
+      color: #222;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating background film reel pattern */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://static.vecteezy.com/system/resources/thumbnails/017/178/282/small/movie-film-roll-on-transparent-background-free-png.png');
+      background-repeat: no-repeat;
+      background-position: right -60px bottom -20px;
+      background-size: 350px;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    /* Header */
     .main-header {
       padding: 14px 0;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      background: #fff;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .main-header .container {
@@ -33,53 +61,140 @@
     }
 
     .logo img {
-      width: 130px;
-      margin-top: 3px;
+      width: 120px;
       transition: transform 0.3s ease;
     }
 
     .logo img:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
-      align-items: center;
+      gap: 25px;
     }
 
     .nav-links a {
-      color: #000;
+      color: #fff;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
+      font-weight: 500;
+      font-size: 15px;
       position: relative;
-      padding-bottom: 4px;
-      transition: color 0.3s ease, transform 0.3s ease;
-      letter-spacing: 0.3px;
       opacity: 0.9;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
 
     .nav-links a:hover {
-      color: #e31c25;
+      color: #ff4757;
       transform: translateY(-2px);
       opacity: 1;
     }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #e31c25;
-      border-radius: 2px;
-      transition: width 0.3s ease;
+    /* Form Container */
+    .form-container {
+      max-width: 480px;
+      margin: 60px auto;
+      padding: 30px 25px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      color: #fff;
     }
 
-    .nav-links a:hover::after {
+    .form-container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      color: #fff;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .form-container h2::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background: #ff4757;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 3px;
+    }
+
+    /* Inputs */
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="file"] {
       width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input::file-selector-button {
+      background: #ff4757;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.3s ease;
+    }
+
+    .form-group input::file-selector-button:hover {
+      background: #e63646;
+    }
+
+    .form-group input:focus {
+      border-color: #ff4757;
+      box-shadow: 0 0 8px rgba(255, 71, 87, 0.5);
+      outline: none;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #ff4757, #c91828);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #ff5b6b, #a81625);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
     }
 
     @media (max-width: 600px) {
@@ -88,83 +203,14 @@
       }
 
       .nav-links a {
-        font-size: 14px;
+        font-size: 13px;
+      }
+
+      .form-container {
+        margin: 40px 15px;
+        padding: 25px 18px;
       }
     }
-
-
-.form-container {
-  max-width: 450px;
-  margin: 40px auto 30px;
-  padding: 25px 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-  transition: all 0.3s ease;
-}
-
-.form-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.form-container h2 {
-  text-align: center;
-  margin-bottom: 22px;
-  font-size: 24px;
-  color: #222;
-  font-weight: 600;
-}
-
-
-.form-group {
-  margin-bottom: 12px; 
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #555;
-  font-size: 14px;
-}
-
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group input[type="file"] {
-  width: 100%;
-  padding: 10px 4px; /* increased padding for taller input */
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus {
-  border-color: #e31c25;
-  box-shadow: 0 0 5px rgba(227, 28, 37, 0.3);
-  outline: none;
-}
-
-
-.submit-btn {
-  width: 100%;
-  padding: 12px;
-  background: #e31c25;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.submit-btn:hover {
-  background: #c1272d;
-  transform: translateY(-1px);
-}
-
   </style>
 </head>
 
@@ -211,16 +257,15 @@
         <input type="text" id="category" name="category" required>
       </div>
       <div class="form-group">
-              <label for="cast">Cast:</label>
-              <input type="text" id="cast" name="cast" required>
-            </div>
+        <label for="cast">Cast:</label>
+        <input type="text" id="cast" name="cast" required>
+      </div>
       <div class="form-group">
         <label for="image">Movie Image:</label>
         <input type="file" id="image" name="image" required>
       </div>
-      <button type="submit" class="submit-btn">Add Movie</button>
+      <button type="submit" class="submit-btn">🎬 Add Movie</button>
     </form>
   </div>
 </body>
-
 </html>

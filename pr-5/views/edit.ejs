@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edit Movie</title>
 
   <style>
-    body {
+    /* Reset */
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #222;
+      box-sizing: border-box;
     }
 
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #1c1c1c 0%, #000 100%);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
+    /* Header */
     .main-header {
-      padding: 10px 0;
+      padding: 14px 0;
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
     }
 
     .main-header .container {
@@ -40,7 +47,7 @@
     }
 
     .logo img:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     .nav-links {
@@ -50,13 +57,18 @@
     }
 
     .nav-links a {
-      color: #000;
+      color: #fff;
       text-decoration: none;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 15px;
       position: relative;
       padding-bottom: 3px;
       transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ff2b2b;
+      transform: translateY(-2px);
     }
 
     .nav-links a::after {
@@ -66,144 +78,148 @@
       bottom: 0;
       width: 0%;
       height: 2px;
-      background-color: #000;
+      background-color: #ff2b2b;
       border-radius: 2px;
       transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: #111;
-      transform: translateY(-2px);
     }
 
     .nav-links a:hover::after {
       width: 100%;
     }
 
+    /* Page Background */
+    .bg-overlay {
+      /* background: url('https://i.ibb.co/TBFWvHq/cinema-bg.jpg') center/cover no-repeat; */
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      filter: brightness(0.35);
+    }
 
+    /* Form Card */
     .container {
       max-width: 1000px;
-      margin: 40px auto;
+      margin: 60px auto;
       padding: 0 20px;
+      display: flex;
+      justify-content: center;
     }
 
     .card {
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
       width: 100%;
       max-width: 480px;
-      margin: 20px auto 60px;
-      padding: 18px 22px;
+      padding: 30px 25px;
+      box-shadow: 0 0 25px rgba(255, 43, 43, 0.25);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h2.text-center {
       text-align: center;
       font-size: 26px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #000;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #ff2b2b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     .image-preview {
       display: block;
       max-width: 200px;
       height: auto;
-      margin: 0 auto 15px;
+      margin: 15px auto 20px;
       border-radius: 10px;
-      border: 2px solid #ccc;
-      background: #f7f7f7;
-      padding: 5px;
+      border: 2px solid #555;
       object-fit: cover;
+      box-shadow: 0 0 15px rgba(255, 43, 43, 0.3);
     }
 
-.form-container {
-  max-width: 450px;
-  margin: 40px auto 30px;
-  padding: 25px 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-  transition: all 0.3s ease;
-}
+    .form-group {
+      margin-bottom: 14px;
+    }
 
-.form-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #ddd;
+      font-size: 14px;
+    }
 
-.form-container h2 {
-  text-align: center;
-  margin-bottom: 22px;
-  font-size: 24px;
-  color: #222;
-  font-weight: 600;
-}
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="file"] {
+      width: 100%;
+      padding: 10px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 14px;
+      transition: 0.3s;
+    }
 
-.form-group {
-  margin-bottom: 12px;
-}
+    .form-group input:focus {
+      border-color: #ff2b2b;
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 43, 43, 0.5);
+    }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #555;
-  font-size: 14px;
-}
+    .btn-update {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #ff2b2b, #d41c1c);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+      box-shadow: 0 0 10px rgba(255, 43, 43, 0.4);
+    }
 
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group input[type="file"] {
-  width: 100%;
-  padding: 10px 4px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
+    .btn-update:hover {
+      background: linear-gradient(90deg, #ff3d3d, #b81717);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255, 43, 43, 0.6);
+    }
 
-.form-group input:focus {
-  border-color: #e31c25;
-  box-shadow: 0 0 5px rgba(227, 28, 37, 0.3);
-  outline: none;
-}
-
-.btn-update {
-  width: 100%;
-  padding: 12px; 
-  background: #e31c25;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  margin-top: 10px;
-}
-
-.btn-update:hover {
-  background: #c1272d;
-  transform: translateY(-1px);
-}
-
- 
     @media (max-width: 600px) {
       .card {
-        max-width: 90%;
-        padding: 15px;
+        padding: 20px;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="bg-overlay"></div>
+
   <header class="main-header">
     <div class="container">
       <a href="/" class="logo">
         <img src="https://cdn.prod.website-files.com/600ee75084e3fe0e5731624c/65b6384089ec9e265952391f_bookmyshow-logo-vector-removebg-preview%20(1).png"
-          alt="logo">
+          alt="logo" />
       </a>
       <div class="nav-links">
         <a href="/">Home</a>
@@ -212,58 +228,54 @@
     </div>
   </header>
 
-
   <div class="container">
     <div class="card">
       <form action="/update-movie/<%= movie.id %>" method="post" enctype="multipart/form-data">
-           <h2 class="text-center">Edit Movie</h2>
+        <h2 class="text-center">Edit Movie</h2>
 
-     
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" name="title" value="<%= movie.title %>" required />
+        </div>
 
-              <div class="form-group">
-                <label>Title</label>
-                <input type="text" name="title" value="<%= movie.title %>" required />
-              </div>
+        <div class="form-group">
+          <label>Director</label>
+          <input type="text" name="director" value="<%= movie.director %>" required />
+        </div>
 
-              <div class="form-group">
-                <label>Director</label>
-                <input type="text" name="director" value="<%= movie.director %>" required />
-              </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" name="description" value="<%= movie.description %>" required />
+        </div>
 
-              <div class="form-group">
-                <label>Description</label>
-                <input type="text" name="description" value="<%= movie.description %>" required />
-              </div>
+        <div class="form-group">
+          <label>Genre</label>
+          <input type="text" name="genre" value="<%= movie.genre %>" required />
+        </div>
 
-              <div class="form-group">
-                <label>Genre</label>
-                <input type="text" name="genre" value="<%= movie.genre %>" required />
-              </div>
+        <div class="form-group">
+          <label>Year</label>
+          <input type="number" name="year" value="<%= movie.year %>" required />
+        </div>
 
-              <div class="form-group">
-                <label>Year</label>
-                <input type="number" name="year" value="<%= movie.year %>" required />
-              </div>
+        <div class="form-group">
+          <label>Category</label>
+          <input type="text" name="category" value="<%= movie.category %>" required />
+        </div>
 
-              <div class="form-group">
-                <label>Category</label>
-                <input type="text" name="category" value="<%= movie.category %>" required />
-              </div>
-
-              <div class="form-group">
-                <label>Upload New Image</label>
-                <input type="file" name="image" />
-                   <% if (movie.image) { %>
-          <img src="/<%= movie.image %>" class="image-preview" alt="<%= movie.title %>">
+        <div class="form-group">
+          <label>Upload New Image</label>
+          <input type="file" name="image" />
+          <% if (movie.image) { %>
+            <img src="/<%= movie.image %>" class="image-preview" alt="<%= movie.title %>">
           <% } else { %>
             <img src="https://via.placeholder.com/200x300" class="image-preview" alt="No image">
-            <% } %>
-              </div>
+          <% } %>
+        </div>
 
-              <button type="submit" class="btn-update">Update Movie</button>
+        <button type="submit" class="btn-update">Update Movie</button>
       </form>
     </div>
   </div>
 </body>
-
 </html>
