@@ -1,0 +1,107 @@
+<%- include ('header')%>
+
+  <!-- ============================================================== -->
+  <!-- Page wrapper  -->
+  <!-- ============================================================== -->
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center px-4">
+          <h4 class="page-title">My Blogs</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Blogs</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title m-b-0">Filter Blogs by Category</h5>
+            </div>
+
+
+            <div class="container py-3">
+              <div class="row">
+
+                <div class="col-md-4 col-sm-6 mb-4">
+                  <div class="card blog-card">
+
+                    <% if (blog.image && blog.image.trim() !=="" ) { %>
+                      <img src="<%= blog.image %>" class="blog-image" alt="Blog Image">
+                      <% } else { %>
+                        <div class="placeholder-image">
+                          <span>No Image Available</span>
+                        </div>
+                        <% } %>
+
+                          <div class="card-body">
+                            <h5 class="card-title">
+                              <%= blog.title %>
+                            </h5>
+
+                            <p class="meta-info"><strong>Category:</strong>
+                              <%= blog.category %>
+                            </p>
+                            <p class="meta-info"><strong>Description:</strong>
+                              <%= blog.desc %>
+                            </p>
+                            <p class="meta-info">
+                              <i class="fas fa-calendar-alt me-1"></i>
+                              <%= new Date(blog.pubDate).toLocaleDateString("en-GB").replace(/\//g, "-" ) %>
+                                <%= new Date(blog.pubDate).toLocaleTimeString("en-GB", { hour: "2-digit" ,
+                                  minute: "2-digit" }) %>
+                            </p>
+
+
+                            <div class="author-info">
+                              <% if (blog.authImage) { %>
+                                <img src="<%= blog.authImage %>" class="author-img" alt="Author">
+                                <% } else { %>
+                                  <img src="https://source.unsplash.com/random/100x100?person" class="author-img"
+                                    alt="Author">
+                                  <% } %>
+                                    <span class="author-name">
+                                      <%= blog.authName %>
+                                    </span>
+                            </div>
+                          </div>
+
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page Content -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+  </div>
+  <%- include ('footer')%>

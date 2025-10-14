@@ -1,0 +1,125 @@
+<%- include('header') %>
+     <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center px-4">
+                        <h4 class="page-title">Blog Details</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">View All Blog</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="page-container">
+              <div class="page-header">
+                  <h1>Blog Collection </h1>
+                  <p>Discover amazing content across various categories</p>
+              </div>
+              
+              <div class="filter-section">
+                <h5>Filter Blogs by Category</h5>
+                <div class="filter-buttons">
+                  <a href="/blogs/view-blog/category/all" class="filter-btn <%= category === 'all' ? 'active-btn' : '' %>">All</a>
+                  <a href="/blogs/view-blog/category/Technology" class="filter-btn <%= category === 'Technology' ? 'active-btn' : '' %>">Technology</a>
+                  <a href="/blogs/view-blog/category/Lifestyle" class="filter-btn <%= category === 'Lifestyle' ? 'active-btn' : '' %>">Lifestyle</a>
+                  <a href="/blogs/view-blog/category/Travel" class="filter-btn <%= category === 'Travel' ? 'active-btn' : '' %>">Travel</a>
+                  <a href="/blogs/view-blog/category/Health" class="filter-btn <%= category === 'Health' ? 'active-btn' : '' %>">Health</a>
+                  <a href="/blogs/view-blog/category/Education" class="filter-btn <%= category === 'Education' ? 'active-btn' : '' %>">Education</a>
+                  <a href="/blogs/view-blog/category/Business" class="filter-btn <%= category === 'Business' ? 'active-btn' : '' %>">Business</a>
+                  <a href="/blogs/view-blog/category/Entertainment" class="filter-btn <%= category === 'Entertainment' ? 'active-btn' : '' %>">Entertainment</a>
+                  <a href="/blogs/view-blog/category/Science" class="filter-btn <%= category === 'Science' ? 'active-btn' : '' %>">Science</a>
+                  <a href="/blogs/view-blog/category/Fashion" class="filter-btn <%= category === 'Fashion' ? 'active-btn' : '' %>">Fashion</a>
+                  <a href="/blogs/view-blog/category/History & Culture" class="filter-btn <%= category === 'History & Culture' ? 'active-btn' : '' %>">History & Culture</a>
+                  <a href="/blogs/view-blog/category/Photography" class="filter-btn <%= category === 'Photography' ? 'active-btn' : '' %>">Photography</a>
+                </div>
+              </div>
+              
+              
+              <div class="blogs-container">
+                <% blogs.forEach(function(blog) { %>
+                  <div class="blog-card">
+                    <div class="image-container">
+                      <img src="<%= blog.image %>" class="blog-image" alt="<%= blog.title %>">
+                      <div class="icon-buttons">
+                        <button class="icon-btn heart-btn" onclick="toggleHeart(this)">
+                          <i class="far fa-heart"></i>
+                        </button>
+                        <button class="icon-btn save-btn" onclick="toggleSave(this)">
+                          <i class="far fa-bookmark"></i>
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div class="card-body">
+                      <span class="category-badge"><%= blog.category %></span>
+                      <h5 class="card-title"><%= blog.title %></h5>
+                      <p class="blog-desc">
+                        <%= blog.desc.split(" ").slice(0, 30).join(" ") %>
+                        <% if (blog.desc.split(" ").length > 40) { %> ... <% } %>
+                      </p>
+                      <p class="meta-info">
+                        <i class="fas fa-calendar-alt"></i> 
+                        <%= new Date(blog.pubDate).toLocaleDateString() %> 
+                        <%= new Date(blog.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %>
+                      </p>
+                      
+                      <div class="author-info">
+                        <img src="<%= blog.authImage %>" class="author-img" alt="<%= blog.author %>">
+                        <span class="author-name"><%= blog.authName %></span>
+                      </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                      <a href="/blogs/view-singleBlog/<%= blog._id %>" class="btn-view">
+                        <i class="fas fa-edit me-1"></i> Read Article
+                      </a>
+                    </div>
+                  </div>
+                <% }) %>
+              </div>
+              
+              <div class="pagination">
+                <% if (currentPage > 1) { %>
+                  <a href="?page=<%= currentPage - 1 %>" class="page-link">Prev</a>
+                <% } %>
+              
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                  <a href="?page=<%= i %>" class="page-link <%= i === currentPage ? 'active' : '' %>">
+                    <%= i %>
+                  </a>
+                <% } %>
+              
+                <% if (currentPage < totalPages) { %>
+                  <a href="?page=<%= currentPage + 1 %>" class="page-link">Next</a>
+                <% } %>
+              </div>
+              
+
+          </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+          
+    </div>
+
+<%- include('footer') %>

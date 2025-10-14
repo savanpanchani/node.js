@@ -1,0 +1,152 @@
+<%- include ('header') %>
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Blog Information</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Update Blog</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" action="/blogs/edit-blog/<%= blog._id%>" method="post"
+                            enctype="multipart/form-data">
+                            <div class="card-body">
+                                <h4 class="card-title">Blog Information</h4>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Blog
+                                        Title</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="fname" placeholder="Blog Title"
+                                            name="title" value="<%= blog.title %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Blog
+                                        Description</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="lname"
+                                            placeholder="Blog Description" name="desc" value="<%= blog.desc %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="pubDate"
+                                        class="col-sm-3 text-right control-label col-form-label">Publishing Date</label>
+                                    <div class="col-sm-9">
+                                        
+                                        <input type="date" class="form-control" name="pubDate" id="pubDate"
+                                            value="<%= blog.pubDate ? blog.pubDate.toISOString().split('T')[0] : '' %>"
+                                            placeholder="Publishing Date">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">Blog
+                                        Category</label>
+                                    <div class="col-md-9">
+                                        <select class="select2 form-control custom-select"
+                                            style="width: 100%; height:36px;" name="category">
+                                            <option value="">Select</option>
+                                            <option value="Technology" <%= blog.category==='Technology' ? 'selected' : '' %>>Technology</option>
+                                            <option value="Lifestyle" <%= blog.category==='Lifestyle' ? 'selected' : '' %>>Lifestyle</option>
+                                            <option value="Travel" <%= blog.category==='Travel' ? 'selected' : '' %>>Travel</option>
+                                            <option value="Health" <%= blog.category==='Health' ? 'selected' : '' %>>Health</option>
+                                            <option value="Education" <%= blog.category==='Education' ? 'selected' : '' %>>Education</option>
+                                            <option value="Business" <%= blog.category==='Business' ? 'selected' : '' %>>Business</option>
+                                            <option value="Entertainment" <%= blog.category==='Entertainment' ? 'selected' : '' %>>Entertainment</option>
+                                            <option value="Science" <%= blog.category==='Science' ? 'selected' : '' %>>Science</option>
+                                            <option value="Fashion" <%= blog.category==='Fashion' ? 'selected' : '' %>>Fashion</option>
+                                            <option value="History & Culture" <%= blog.category==='History & Culture' ? 'selected' : '' %>>History & Culture</option>
+                                            <option value="Photography" <%= blog.category==='Photography' ? 'selected' : '' %>>Photography</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Blog
+                                        Image</label>
+                                    <div class="col-sm-9">
+                                       
+                                        <input type="file" class="form-control" id="fname" placeholder="Blog Image"
+                                            name="image">
+                                        <% if (blog.image) { %>
+                                            <img src="<%= blog.image %>" alt="Blog Image" width="100" class="mt-2"/>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Author
+                                    Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="lname" placeholder="Author Name"
+                                        value="<%= blog.authName %>" name="authName">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Author
+                                    image</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control" id="lname" placeholder="Author Image"
+                                        name="authImage">
+                                    <% if (blog.authImage) { %>
+                                        <img src="<%= blog.authImage %>" alt="Author Image" width="100" class="mt-2"/>
+                                    <% } %>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="border-top">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Update Blog</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- editor -->
+
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+
+
+    <%- include ('footer') %>

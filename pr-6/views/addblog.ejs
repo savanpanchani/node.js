@@ -1,0 +1,129 @@
+<%- include ('header') %>
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Blog Information</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Add Blog</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" action="/blogs/add-blog" method="post"
+                            enctype="multipart/form-data">
+                            <div class="card-body">
+                                <h4 class="card-title">Blog Information</h4>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Blog
+                                        Title</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="fname" placeholder="Blog Title"
+                                            name="title">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="desc" class="col-sm-3 text-right control-label col-form-label">
+                                        Blog Description
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" id="desc" name="desc" rows="3"
+                                            placeholder="Enter blog description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="lname"
+                                        class="col-sm-3 text-right control-label col-form-label">Publishing Date</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" name="pubDate" id="lname"
+                                            placeholder="Publishing Date">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">Blog
+                                        Category</label>
+                                    <div class="col-md-9">
+                                        <select class="select2 form-control custom-select"
+                                            style="width: 100%; height:36px;" name="category">
+                                            <option>Select</option>
+                                            <option value="Technology">Technology</option>
+                                            <option value="Lifestyle">Lifestyle</option>
+                                            <option value="Travel">Travel</option>
+                                            <option value="Health">Health</option>
+                                            <option value="Education">Education</option>
+                                            <option value="Business">Business</option>
+                                            <option value="Entertainment">Entertainment</option>
+                                            <option value="Science">Science</option>
+                                            <option value="Fashion">Fashion</option>
+                                            <option value="History & Culture">History & Culture</option>
+                                            <option value="Photography">Photography</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Blog
+                                        Image</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control" id="fname" placeholder="Blog Image"
+                                            name="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Add Blog</button>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- editor -->
+
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+
+
+    <%- include ('footer') %>

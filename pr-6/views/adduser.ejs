@@ -1,0 +1,139 @@
+<%- include ('header') %>
+  <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">User Information</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Add User</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <form class="form-horizontal" action="/users/add-user" method="post" enctype="multipart/form-data">
+                                <div class="card-body">
+                                    <h4 class="card-title">User Info</h4>
+                                    <div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="fname" placeholder="First Name Here" name="firstname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="lname" placeholder="Last Name Here" name="lastname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="email" id="lname" placeholder="Last Name Here">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" class="form-control" id="lname" placeholder="Password Here" name="password">
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="form-group row">
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Contact No</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="cono1" placeholder="Contact No Here" name="contact">
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Gender</label>
+                                        <div class="col-md-9">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input" id="customControlValidation1" name="gender" value="Male" required>
+                                                <label class="custom-control-label" for="customControlValidation1" >Male</label>
+                                            </div>
+                                             <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input" id="customControlValidation2" value="Female" name="gender" required>
+                                                <label class="custom-control-label" for="customControlValidation2">Female</label>
+                                            </div>
+                                             
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Hobbies</label>
+                                        <div class="col-md-9">
+                                            <div class="custom-control custom-checkbox mr-sm-2">
+                                                <input type="checkbox" class="custom-control-input" id="customControlAutosizing1"  name="hobbies" value="Reading">
+                                                <label class="custom-control-label" for="customControlAutosizing1">Reading</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox mr-sm-2">
+                                                <input type="checkbox" class="custom-control-input" id="customControlAutosizing2"  name="hobbies" value="Music">
+                                                <label class="custom-control-label" for="customControlAutosizing2">Music</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox mr-sm-2">
+                                                <input type="checkbox" class="custom-control-input"   name="hobbies" id="customControlAutosizing3" value="Traveling">
+                                                <label class="custom-control-label" for="customControlAutosizing3">Traveling</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">User Image</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" id="fname" placeholder="First Name Here" name="image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="submit" class="btn btn-primary">Add User</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                       </div>
+                 
+                </div>
+                <!-- editor -->
+              
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+        
+
+<%- include ('footer') %>

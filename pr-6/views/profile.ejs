@@ -1,0 +1,77 @@
+<%- include ('header') %>
+
+<div class="page-wrapper">
+  <div class="container-fluid user-profile-container">
+      <div class="row justify-content-center">
+          <div class="col-lg-10">
+              <div class="user-profile-card">
+                  <div class="user-card-header">
+                      <h3 class="mb-0"><i class="fas fa-user-circle me-2"></i>User Profile</h3>
+                  </div>
+
+                  <div class="user-card-body p-4">
+                      <div class="row">
+                          <div class="col-md-4 text-center user-divider">
+                              <div class="user-profile-img-container">
+                                  <img src="<%= user.image %>" class="user-profile-img rounded-circle" alt="User Image">
+                                  <span class="user-status-badge"></span>
+                              </div>
+                              <h4 class="user-profile-name mt-3"><%= user.firstname %> <%= user.lastname %></h4>
+                              <p class="user-profile-title">Active Member</p>
+                              
+                              <div class="user-social-links">
+                                  <a href="#"><i class="fab fa-facebook"></i></a>
+                                  <a href="#"><i class="fab fa-twitter"></i></a>
+                                  <a href="#"><i class="fab fa-instagram"></i></a>
+                                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                              </div>
+                          </div>
+
+                          <div class="col-md-8 ps-md-4 ">
+                              <h5 class="mb-4" style="color: var(--primary-lighter);"><i class="fas fa-info-circle me-2"></i>Personal Information</h5>
+                              <table class="table user-info-table">
+                                  <tbody>
+                                      <tr>
+                                          <th><i class="fas fa-envelope me-2"></i> <span class="ms-4">Email</span></th>
+                                          <td><%= user.email %></td>
+                                      </tr>
+                                      <tr>
+                                          <th><i class="fas fa-phone me-2"></i><span class="ms-4">Contect</span></th>
+                                          <td><%= user.contact %></td>
+                                      </tr>
+                                      <tr>
+                                          <th><i class="fas fa-venus-mars me-2"></i><span class="ms-4">Gender</span></th>
+                                          <td><%= user.gender %></td>
+                                      </tr>
+                                      <tr>
+                                          <th> <i class="fas fa-eye fs-5 ms-2"></i><span class="ms-4">Password</span></th>
+                                          <td><%= user.password %></td>
+                                      </tr>
+                                      <tr>
+                                          <th><i class="fas fa-heart me-2"></i><span class="ms-4">Hobbies</span></th>
+                                          <td>
+                                              <% if (user.hobbies && Array.isArray(user.hobbies)) { %>
+                                                  <% user.hobbies.forEach(function(hobby) { %>
+                                                      <span class="user-hobby-badge"><%= hobby %></span>
+                                                  <% }); %>
+                                              <% } else { %>
+                                                  <span class="user-hobby-badge"><%= user.hobbies %></span>
+                                              <% } %>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                              <div class="mt-4">
+                                  <a href="/users/edit-user/<%= user._id %>" class="user-edit-btn"><i class="fas fa-edit me-2"></i>Edit Profile</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<%- include ('footer') %>
+
