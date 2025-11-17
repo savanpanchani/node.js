@@ -1,0 +1,147 @@
+<%- include('../header') %>
+  <!-- ============================================================== -->
+  <!-- Page wrapper  -->
+  <!-- ============================================================== -->
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Admin Information</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data"
+              action="/admin/update-admin/<%= admin._id %>">
+              <div class="card-body">
+                <h4 class="card-title">Personal Info</h4>
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="fname" name="firstname" value="<%= admin.firstname %>"
+                      placeholder="First Name Here">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="lname" name="lastname" placeholder="Last Name Here"
+                      value="<%= admin.lastname %>">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="email" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email Here"
+                      value="<%= admin.email %>">
+                  </div>
+                </div>
+              
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label">Gender</label>
+                  <div class="col-md-9 d-flex gap-5">
+                    <div class="custom-control custom-radio m-r-5">
+                      <input type="radio" class="custom-control-input" id="customControlValidation1" name="gender"
+                        value="Male" <% if(admin.gender=='Male' ) { %> checked <% } %> required>
+                        <label class="custom-control-label" for="customControlValidation1">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio m-l-5">
+                      <input type="radio" class="custom-control-input" id="customControlValidation2" name="gender"
+                        value="Female" <% if(admin.gender=='Female' ) { %> checked <% } %> required>
+                        <label class="custom-control-label" for="customControlValidation2">Female</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label">Hobbies</label>
+                  <div class="col-md-9 d-flex">
+                    <div class="custom-control custom-checkbox mr-sm-2">
+                      <input type="checkbox" class="custom-control-input" name="hobbies" value="Reading"
+                        id="customControlAutosizing1" <% if(admin.hobbies.includes('Reading')) { %> checked <% } %>>
+                        <label class="custom-control-label" for="customControlAutosizing1">Reading</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-sm-2">
+                      <input type="checkbox" class="custom-control-input" name="hobbies" value="Music"
+                        id="customControlAutosizing2" <% if(admin.hobbies.includes('Music')) { %> checked <% } %>>
+                        <label class="custom-control-label" for="customControlAutosizing2">Music</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-sm-2">
+                      <input type="checkbox" class="custom-control-input" name="hobbies" value="Adventure"
+                        id="customControlAutosizing3" <% if(admin.hobbies.includes('Adventure')) { %> checked <% } %>>
+                        <label class="custom-control-label" for="customControlAutosizing3">Adventure</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label">File Upload</label>
+                  <div class="col-md-9">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="profileImage" id="validatedCustomFile"
+                        required>
+                      <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                      <% if(admin.profileImage) { %>
+                        <img src="<%= admin.profileImage%>" width="100">
+                        <% } %>
+                          <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label">Profile Image</label>
+                <div class="col-md-9">
+                  <input type="file" name="profileImage">
+                  <% if(admin.profileImage) { %>
+                    <img src="<%= admin.profileImage%>" width="70" height="50">
+                  <% } %>
+                </div>
+              </div>
+              </div>
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- End PAge Content -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Right sidebar -->
+      <!-- ============================================================== -->
+      <!-- .right-sidebar -->
+      <!-- ============================================================== -->
+      <!-- End Right sidebar -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <%- include('../footer') %>
