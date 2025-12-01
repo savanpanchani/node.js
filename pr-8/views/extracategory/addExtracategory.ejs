@@ -1,0 +1,130 @@
+<%- include('../header') %>
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">ExtraCategory Information</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" method="post" action="/extracategory/add-extracategory">
+                            <div class="card-body">
+                                <h4 class="card-title">ExtraCategory Info</h4>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Category
+                                        Name</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="category" name="category" required>
+                                            <option>Select Any Category</option>
+                                            <% categories.forEach(category=> { %>
+                                                <option value="<%= category._id %>">
+                                                    <%= category.categoryName %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname"
+                                        class="col-sm-3 text-right control-label col-form-label">SubCategory
+                                        Name</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="subCategory" name="subCategory" required>
+                                            <option>Select Any Subcategory</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Extra
+                                        Category Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="fname" name="extracategory"
+                                            placeholder="Enter Extra Category Name" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <%- include('../footer') %>
+            <script>
+                let category = document.querySelector("#category");
+                let subCategory = document.querySelector("#subCategory");
+
+                category.addEventListener('change', () => {
+                    let categoryId = category.value;
+
+                    // backend route: /extracategory/subcategory/:categoryId
+                    fetch(`/extracategory/subcategory/${categoryId}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            // Reset dropdown
+                            subCategory.innerHTML = `<option>Select Any Subcategory</option>`;
+
+                            // If no subcategory found
+                            if (!data.subCategories || data.subCategories.length === 0) {
+                                subCategory.innerHTML = `<option>No Subcategory Found</option>`;
+                                return;
+                            }
+
+                            // Fill dropdown
+                            data.subCategories.forEach(subcat => {
+                                let option = document.createElement("option");
+                                option.value = subcat._id;
+                                option.textContent = subcat.subCategoryName;
+                                subCategory.appendChild(option);
+                            });
+                        })
+                        .catch(err => console.log(err));
+                });
+            </script>

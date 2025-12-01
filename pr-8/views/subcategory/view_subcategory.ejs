@@ -1,0 +1,101 @@
+<%- include('../header') %>
+
+  <div class="page-wrapper">
+    <!-- Flash Alerts -->
+    <% if (locals.success) { %>
+      <script>
+        Swal.fire({
+          icon: "success",
+          title: "<%= success %>",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      </script>
+      <% } %>
+
+        <% if (locals.error) { %>
+          <script>
+            Swal.fire({
+              icon: "error",
+              title: "<%= error %>",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          </script>
+          <% } %>
+
+            <div class="page-breadcrumb">
+              <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                  <h4 class="page-title">Sub Category Information</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title m-b-0">Sub Category Information</h5>
+                    </div>
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Category Name</th>
+                          <th>Category Image</th>
+                          <th>Sub Category Name</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+
+                          <% subCategories.forEach((subCate, i)=> { %>
+                            <tr>
+                              <td>
+                                <%= i + 1 %>
+                              </td>
+
+                              <td>
+                                <%=  subCate.category.categoryName %>
+                              </td>
+
+                              <td>
+                                <% if (subCate.category && subCate.category.categoryImage) { %>
+                                  <img src="<%= subCate.category.categoryImage %>" height="90" width="150">
+                                  <% } else { %>
+                                    No Image
+                                    <% } %>
+                              </td>
+
+                              <td>
+                                <%= subCate.subCategoryName %>
+                              </td>
+
+                              <td>
+                                <a href="/subcategory/edit-subcategory/<%= subCate._id %>">
+                                  <i class="fas fa-edit"></i>
+                                </a>
+                                &nbsp; || &nbsp;
+                                <a href="/subcategory/delete-subcategory/<%= subCate._id %>">
+                                  <i class="fas fa-trash"></i>
+                                </a>
+                              </td>
+                            </tr>
+                            <% }) %>
+
+                            
+                      </tbody>
+
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+  </div>
+
+  <%- include('../footer') %>

@@ -1,0 +1,72 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Edit Sub Category</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" action="/subcategory/update-subcategory/<%= subCategory._id %>"
+                            method="post">
+
+                            <div class="card-body">
+                                <h4 class="card-title">Edit Sub Category Info</h4>
+
+                                <!-- CATEGORY -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">
+                                        Category
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" disabled>
+                                            <% categories.forEach(cat=> { %>
+                                                <option value="<%= cat._id %>"
+                                                    <%=subCategory.category._id.toString()===cat._id.toString()
+                                                    ? "selected" : "" %>>
+                                                    <%= cat.categoryName %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- SUB CATEGORY NAME -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">
+                                        Sub Category Name
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="subCategoryName" class="form-control"
+                                            value="<%= subCategory.subCategoryName %>" required>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+
+                                    <!-- Correct Cancel Button -->
+                                    <a href="/subcategory/view-subcategory" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <%- include('../footer') %>

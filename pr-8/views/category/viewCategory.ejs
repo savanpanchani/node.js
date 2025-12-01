@@ -1,0 +1,60 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">All Categories</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category Name</th>
+                                    <th>Category Image</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% categories.forEach((category, i)=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= i+1 %>
+                                        </td>
+                                        <td>
+                                            <%= category.categoryName %>
+                                        </td>
+                                        <td><img src="<%= category.categoryImage %>" height="80" width="120"></td>
+
+                                        <td>
+                                            <a href="/category/edit-category/<%= category._id %>">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+
+                                            &nbsp; || &nbsp;
+
+                                            <a href="/category/delete-category/<%= category._id %>">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('../footer') %>
