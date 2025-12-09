@@ -1,6 +1,6 @@
 const ExtraCategory = require("../models/extraCategory.model");
 const CategoryModel = require("../models/category.model");
-const SubCategoryModel = require("../models/subcategory.model");
+const SubCategoryModel = require("../models/subCategory.model");
 const mongoose = require("mongoose");
 
 exports.getAllSubCategories = async (req, res) => {

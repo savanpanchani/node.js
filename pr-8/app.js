@@ -43,17 +43,13 @@ app.use(passport.session());
 app.use(passport.setValidateUser);
 
 app.use(flashMessage);
-
-// Routes
 app.use("/", indexRoutes);
-// app.use("/blog", blogRoutes);
-// app.use("/category", categoryRoutes);
+
 
 app.use((req, res) => {
   res.status(404).send("Page Not Found");
 });
 
-// Start server
 const port = 9005;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
