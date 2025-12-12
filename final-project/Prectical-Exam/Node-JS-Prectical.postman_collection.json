@@ -1,0 +1,1021 @@
+{
+	"info": {
+		"_postman_id": "1b70c8c5-0fe3-4425-b869-6a848e3a5ba1",
+		"name": "Node-JS-Prectical",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42144002"
+	},
+	"item": [
+		{
+			"name": "Recipe",
+			"item": [
+				{
+					"name": "add Recipe",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Aalu-Puri\",\r\n    \"ingredients\": \"wheat flour, boiled and mashed potatoes, salt, and various spices like cumin seeds (jeera), carom seeds (ajwain), red chili powder, and turmeric powder\",\r\n    \"instructions\": \"In a large bowl, combine the whole wheat flour, semolina, salt, and all the spices (red chili powder, cumin powder, turmeric powder, carom seeds, and fenugreek leaves, if using).\",\r\n    \"category\": \"Breakfast\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8008/api/admin/addRecipe",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"addRecipe"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "500"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f4-/8YVf5Xn7Hw/KEPFOXKrXwzI7Z4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 10:34:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Recipe added successfully\",\n    \"recipe\": {\n        \"title\": \"Aalu-Puri\",\n        \"ingredients\": [\n            \"wheat flour, boiled and mashed potatoes, salt, and various spices like cumin seeds (jeera), carom seeds (ajwain), red chili powder, and turmeric powder\"\n        ],\n        \"instructions\": \"In a large bowl, combine the whole wheat flour, semolina, salt, and all the spices (red chili powder, cumin powder, turmeric powder, carom seeds, and fenugreek leaves, if using).\",\n        \"category\": \"Breakfast\",\n        \"_id\": \"68e39b1aa76d92bba646e088\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit recipe",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Aalu-puri",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Aalu-Puris\",\r\n    \"ingredients\": \"wheat flour, boiled and mashed potatoes, salt, and various spices like cumin seeds (jeera), carom seeds (ajwain), red chili powder, and turmeric powder\",\r\n    \"instructions\": \"In a large bowl, combine the whole wheat flour, semolina, salt, and all the spices (red chili powder, cumin powder, turmeric powder, carom seeds, and fenugreek leaves, if using).\",\r\n    \"category\": \"Breakfast\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8008/api/admin/editRecipe/68e39b1aa76d92bba646e088",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"editRecipe",
+										"68e39b1aa76d92bba646e088"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "520"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"208-Ke73iow3vP/WvJXCSHjLDu6bFE8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 11:11:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Recipe updated successfully\",\n    \"recipe\": {\n        \"isdelete\": false,\n        \"_id\": \"68e39b1aa76d92bba646e088\",\n        \"title\": \"Aalu-Puris\",\n        \"ingredients\": [\n            \"wheat flour, boiled and mashed potatoes, salt, and various spices like cumin seeds (jeera), carom seeds (ajwain), red chili powder, and turmeric powder\"\n        ],\n        \"instructions\": \"In a large bowl, combine the whole wheat flour, semolina, salt, and all the spices (red chili powder, cumin powder, turmeric powder, carom seeds, and fenugreek leaves, if using).\",\n        \"category\": \"Breakfast\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Resipe",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "View Self",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8008/api/admin/viewSelf",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"viewSelf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-dOaHsmC2z2TiokyNSVjJusDDH7Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 11:41:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"68e38cd725f1c73a5d7d7fac\",\n    \"firstName\": \"Jhon\",\n    \"lastName\": \"Peter\",\n    \"password\": \"$2b$10$D4UOZqQeYWuScL0x.ARh5uey0UkuQSNcEGA178KD5BAfmCLDGehPO\",\n    \"email\": \"jhon@test.in\",\n    \"contactNo\": 9874563210,\n    \"gender\": \"Male\",\n    \"role\": \"Admin\",\n    \"isDeleted\": false,\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Self",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"firstName\" : \"Jhon\",\r\n    \"lastName\": \"Peter\",\r\n    \"password\":\"Jhon@123\",\r\n    \"email\":\"jhon@test.in\",\r\n    \"contactNo\":\"9874563210\",\r\n    \"gender\":\"Male\",\r\n    \"role\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8008/api/admin/editSelf",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"editSelf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12e-l5gwvPos44u69W0W/XwL4ScL5g4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 11:44:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Profile updated successfully\",\n    \"updated\": {\n        \"_id\": \"68e38cd725f1c73a5d7d7fac\",\n        \"firstName\": \"Jhon\",\n        \"lastName\": \"Peter\",\n        \"password\": \"$2b$10$9UULDc7QO9WgjKDg4DALrOpOmlGHixhqgzURu2wkqrDTu4znbibXK\",\n        \"email\": \"jhon@test.in\",\n        \"contactNo\": 9874563210,\n        \"gender\": \"Male\",\n        \"role\": \"Admin\",\n        \"isDeleted\": false,\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8008/api/admin/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "254"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fe-HP8RtsDldTXoVsMzKnCF7x3GGtQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 11:45:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68e38e660cde332b1d3f3256\",\n        \"firstName\": \"Vivek\",\n        \"lastName\": \"Prajapati\",\n        \"password\": \"$2b$10$xXq748xvdapHwtuCEiRS9ebvCQx.NkVsX2m75JNGKuoAbP8SP0ypq\",\n        \"email\": \"vivek@test.in\",\n        \"contactNo\": 94991560,\n        \"gender\": \"Male\",\n        \"role\": \"User\",\n        \"isDeleted\": false,\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add User",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"firstName\" : \"Jenish\",\r\n    \"lastName\": \"Patel\",\r\n    \"password\":\"Jenish@123\",\r\n    \"email\":\"jenish@test.in\",\r\n    \"contactNo\":\"1234567890\",\r\n    \"gender\":\"Male\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8008/api/admin/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"add"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-iGErLku/9taeeOQN+9qwFgLXnuo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 11:48:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User already exists\"\n}"
+						},
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"firstName\" : \"OMi\",\r\n    \"lastName\": \"Patel\",\r\n    \"password\":\"om@123\",\r\n    \"email\":\"omi@test.in\",\r\n    \"contactNo\":\"1234567890\",\r\n    \"gender\":\"Male\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8008/api/admin/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"add"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "276"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"114-z7/YSJ1mymB32UEoQR1KjW8Y3pY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 11:50:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created & Mail Sent\",\n    \"user\": {\n        \"firstName\": \"OMi\",\n        \"lastName\": \"Patel\",\n        \"password\": \"$2b$10$W9ALDmo57mD42IJLc69XwOCLBDdlAUzSqgeSQbehqtAwrTnY/1xd.\",\n        \"email\": \"omi@test.in\",\n        \"contactNo\": 1234567890,\n        \"role\": \"User\",\n        \"isDeleted\": false,\n        \"_id\": \"68e3acf2a9fb6519d5b237c5\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"firstName\" : \"Omi\",\r\n    \"lastName\": \"Patel\",\r\n    \"password\":\"om@123\",\r\n    \"email\":\"omi@test.in\",\r\n    \"contactNo\":\"1234567890\",\r\n    \"gender\":\"Male\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8008/api/admin/editUser/68e3acf2a9fb6519d5b237c5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"editUser",
+										"68e3acf2a9fb6519d5b237c5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "277"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"115-OMBgEbDtRZ4fkEBGaBYpXxZb97E\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 11:52:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User updated successfully\",\n    \"user\": {\n        \"_id\": \"68e3acf2a9fb6519d5b237c5\",\n        \"firstName\": \"Omi\",\n        \"lastName\": \"Patel\",\n        \"password\": \"$2b$10$.Hl7vsYPiO9OBAQGRAuiLuWWMIAG9xkqa0dRjtw80dV19/rQbPO1.\",\n        \"email\": \"omi@test.in\",\n        \"contactNo\": 1234567890,\n        \"role\": \"User\",\n        \"isDeleted\": false,\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "delete user",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8008/api/admin/68e3acf2a9fb6519d5b237c5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8008",
+									"path": [
+										"api",
+										"admin",
+										"68e3acf2a9fb6519d5b237c5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-27o4zzUjhHNmthTJyia4gBCjpos\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 11:54:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstName",
+							"value": "Vivek",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Prajapati",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "vivek@test.in",
+							"type": "text"
+						},
+						{
+							"key": "  contactNo",
+							"value": "7895462310",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "Male",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "Manager",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/auth/regUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"auth",
+						"regUser"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ADMIN Register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"firstName\" : \"Jhon\",\r\n    \"lastName\": \"Peter\",\r\n    \"password\":\"Jhon@123\",\r\n    \"email\":\"jhon@test.in\",\r\n    \"contactNo\":\"9874563210\",\r\n    \"gender\":\"Male\",\r\n    \"role\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8008/api/auth/registerUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8008",
+							"path": [
+								"api",
+								"auth",
+								"registerUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-Wn8imxt06stlkBD71/NLU1jq/aE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 06 Oct 2025 09:33:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"message\": \"New User Register\"\n}"
+				},
+				{
+					"name": "User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"firstName\" : \"Vivek\",\r\n    \"lastName\": \"Prajapati\",\r\n    \"email\":\"vivek@test.in\",\r\n    \"password\":\"Vivek@123\",\r\n    \"contactNo\":\"94991560\",\r\n    \"gender\":\"Male\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8008/api/auth/registerUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8008",
+							"path": [
+								"api",
+								"auth",
+								"registerUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2c-Wn8imxt06stlkBD71/NLU1jq/aE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 06 Oct 2025 09:39:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"message\": \"New User Register\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login User Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "vivek@test.in",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/auth/loginUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"auth",
+						"loginUser"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ADMIN Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jhon@test.in\",\r\n    \"password\": \"Jhon@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8008/api/auth/loginUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8008",
+							"path": [
+								"api",
+								"auth",
+								"loginUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "178"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b2-1dqEmHZaeyakHVB3bWxBLjWMv3k\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 06 Oct 2025 09:35:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGUzOGNkNzI1ZjFjNzNhNWQ3ZDdmYWMiLCJpYXQiOjE3NTk3NDMzMjZ9.0tYxv_V2wXGi9cmBQSPH7QhAw_G_HVEdwgSJB1KCFf8\"\n}"
+				},
+				{
+					"name": "Login User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"vivek@test.in\",\r\n    \"password\": \"Vivek@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8008/api/auth/loginUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8008",
+							"path": [
+								"api",
+								"auth",
+								"loginUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "178"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b2-dWOTLlQP0C9lZ3MsSUYNx0rUGk0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 06 Oct 2025 09:42:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGUzOGU2NjBjZGUzMzJiMWQzZjMyNTYiLCJpYXQiOjE3NTk3NDM3NzN9.Z6n8EdPFVqp7xoG1GQHHh8PE_YRCdqHwbQ0LsN5Sn1U\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all recipe",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
